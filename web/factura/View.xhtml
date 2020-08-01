@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaViewDlg" widgetVar="FacturaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturaTitle}">
+            <h:form id="FacturaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturaLabel_nnmfactura}"/>
+                        <h:outputText value="#{facturaController.selected.nnmfactura}" title="#{bundle.ViewFacturaTitle_nnmfactura}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_nombreempleado}"/>
+                        <h:outputText value="#{facturaController.selected.nombreempleado}" title="#{bundle.ViewFacturaTitle_nombreempleado}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_fechafacturacion}"/>
+                        <h:outputText value="#{facturaController.selected.fechafacturacion}" title="#{bundle.ViewFacturaTitle_fechafacturacion}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_totalFactura}"/>
+                        <h:outputText value="#{facturaController.selected.totalFactura}" title="#{bundle.ViewFacturaTitle_totalFactura}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_iva}"/>
+                        <h:outputText value="#{facturaController.selected.iva}" title="#{bundle.ViewFacturaTitle_iva}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_codCliente}"/>
+                        <h:outputText value="#{facturaController.selected.codCliente}" title="#{bundle.ViewFacturaTitle_codCliente}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_codFormapago}"/>
+                        <h:outputText value="#{facturaController.selected.codFormapago}" title="#{bundle.ViewFacturaTitle_codFormapago}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

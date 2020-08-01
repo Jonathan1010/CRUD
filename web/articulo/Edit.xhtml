@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArticuloEditDlg" widgetVar="ArticuloEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditArticuloTitle}">
+            <h:form id="ArticuloEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{articuloController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_idArticulo}" for="idArticulo" />
+                        <p:inputText id="idArticulo" value="#{articuloController.selected.idArticulo}" title="#{bundle.EditArticuloTitle_idArticulo}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_idArticulo}"/>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{articuloController.selected.descripcion}" title="#{bundle.EditArticuloTitle_descripcion}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_precioVenta}" for="precioVenta" />
+                        <p:inputText id="precioVenta" value="#{articuloController.selected.precioVenta}" title="#{bundle.EditArticuloTitle_precioVenta}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_precioVenta}"/>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_precioCosto}" for="precioCosto" />
+                        <p:inputText id="precioCosto" value="#{articuloController.selected.precioCosto}" title="#{bundle.EditArticuloTitle_precioCosto}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_precioCosto}"/>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_stock}" for="stock" />
+                        <p:inputText id="stock" value="#{articuloController.selected.stock}" title="#{bundle.EditArticuloTitle_stock}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_stock}"/>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_fechaIngreso}" for="fechaIngreso" />
+                        <p:inputText id="fechaIngreso" value="#{articuloController.selected.fechaIngreso}" title="#{bundle.EditArticuloTitle_fechaIngreso}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_fechaIngreso}"/>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_codProveedor}" for="codProveedor" />
+                        <p:selectOneMenu id="codProveedor" value="#{articuloController.selected.codProveedor}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_codProveedor}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="codProveedorItem"
+                                           itemValue="#{codProveedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_codTipoArticulo}" for="codTipoArticulo" />
+                        <p:selectOneMenu id="codTipoArticulo" value="#{articuloController.selected.codTipoArticulo}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_codTipoArticulo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoArticuloController.itemsAvailableSelectOne}"
+                                           var="codTipoArticuloItem"
+                                           itemValue="#{codTipoArticuloItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{articuloController.update}" value="#{bundle.Save}" update="display,:ArticuloListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ArticuloEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ArticuloEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

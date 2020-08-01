@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DevolucionCreateDlg" widgetVar="DevolucionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDevolucionTitle}">
+            <h:form id="DevolucionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{devolucionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDevolucionLabel_motivo}" for="motivo" />
+                        <p:inputText id="motivo" value="#{devolucionController.selected.motivo}" title="#{bundle.CreateDevolucionTitle_motivo}" required="true" requiredMessage="#{bundle.CreateDevolucionRequiredMessage_motivo}"/>
+                        <p:outputLabel value="#{bundle.CreateDevolucionLabel_fechadevolucion}" for="fechadevolucion" />
+                        <p:inputText id="fechadevolucion" value="#{devolucionController.selected.fechadevolucion}" title="#{bundle.CreateDevolucionTitle_fechadevolucion}" required="true" requiredMessage="#{bundle.CreateDevolucionRequiredMessage_fechadevolucion}"/>
+                        <p:outputLabel value="#{bundle.CreateDevolucionLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{devolucionController.selected.cantidad}" title="#{bundle.CreateDevolucionTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateDevolucionRequiredMessage_cantidad}"/>
+                        <p:outputLabel value="#{bundle.CreateDevolucionLabel_detalleFactura}" for="detalleFactura" />
+                        <p:selectOneMenu id="detalleFactura" value="#{devolucionController.selected.detalleFactura}" required="true" requiredMessage="#{bundle.EditDevolucionRequiredMessage_detalleFactura}">
+                            <f:selectItems value="#{detalleFacturaController.itemsAvailableSelectOne}"
+                                           var="detalleFacturaItem"
+                                           itemValue="#{detalleFacturaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDevolucionLabel_detalleFactura1}" for="detalleFactura1" />
+                        <p:selectOneMenu id="detalleFactura1" value="#{devolucionController.selected.detalleFactura1}" required="true" requiredMessage="#{bundle.EditDevolucionRequiredMessage_detalleFactura1}">
+                            <f:selectItems value="#{detalleFacturaController.itemsAvailableSelectOne}"
+                                           var="detalleFactura1Item"
+                                           itemValue="#{detalleFactura1Item}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{devolucionController.create}" value="#{bundle.Save}" update="display,:DevolucionListForm:datalist,:growl" oncomplete="handleSubmit(args,'DevolucionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DevolucionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArticuloViewDlg" widgetVar="ArticuloViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewArticuloTitle}">
+            <h:form id="ArticuloViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{articuloController.selected != null}">
+                        <h:outputText value="#{bundle.ViewArticuloLabel_idArticulo}"/>
+                        <h:outputText value="#{articuloController.selected.idArticulo}" title="#{bundle.ViewArticuloTitle_idArticulo}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_descripcion}"/>
+                        <h:outputText value="#{articuloController.selected.descripcion}" title="#{bundle.ViewArticuloTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_precioVenta}"/>
+                        <h:outputText value="#{articuloController.selected.precioVenta}" title="#{bundle.ViewArticuloTitle_precioVenta}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_precioCosto}"/>
+                        <h:outputText value="#{articuloController.selected.precioCosto}" title="#{bundle.ViewArticuloTitle_precioCosto}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_stock}"/>
+                        <h:outputText value="#{articuloController.selected.stock}" title="#{bundle.ViewArticuloTitle_stock}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_fechaIngreso}"/>
+                        <h:outputText value="#{articuloController.selected.fechaIngreso}" title="#{bundle.ViewArticuloTitle_fechaIngreso}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_codProveedor}"/>
+                        <h:outputText value="#{articuloController.selected.codProveedor}" title="#{bundle.ViewArticuloTitle_codProveedor}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_codTipoArticulo}"/>
+                        <h:outputText value="#{articuloController.selected.codTipoArticulo}" title="#{bundle.ViewArticuloTitle_codTipoArticulo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ArticuloViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

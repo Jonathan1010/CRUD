@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoDeDocumentoCreateDlg" widgetVar="TipoDeDocumentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoDeDocumentoTitle}">
+            <h:form id="TipoDeDocumentoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoDeDocumentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTipoDeDocumentoLabel_idTipoDocumento}" for="idTipoDocumento" />
+                        <p:inputText id="idTipoDocumento" value="#{tipoDeDocumentoController.selected.idTipoDocumento}" title="#{bundle.CreateTipoDeDocumentoTitle_idTipoDocumento}" required="true" requiredMessage="#{bundle.CreateTipoDeDocumentoRequiredMessage_idTipoDocumento}"/>
+                        <p:outputLabel value="#{bundle.CreateTipoDeDocumentoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tipoDeDocumentoController.selected.descripcion}" title="#{bundle.CreateTipoDeDocumentoTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateTipoDeDocumentoRequiredMessage_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoDeDocumentoController.create}" value="#{bundle.Save}" update="display,:TipoDeDocumentoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoDeDocumentoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoDeDocumentoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DevolucionViewDlg" widgetVar="DevolucionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDevolucionTitle}">
+            <h:form id="DevolucionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{devolucionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDevolucionLabel_motivo}"/>
+                        <h:outputText value="#{devolucionController.selected.motivo}" title="#{bundle.ViewDevolucionTitle_motivo}"/>
+                        <h:outputText value="#{bundle.ViewDevolucionLabel_fechadevolucion}"/>
+                        <h:outputText value="#{devolucionController.selected.fechadevolucion}" title="#{bundle.ViewDevolucionTitle_fechadevolucion}"/>
+                        <h:outputText value="#{bundle.ViewDevolucionLabel_cantidad}"/>
+                        <h:outputText value="#{devolucionController.selected.cantidad}" title="#{bundle.ViewDevolucionTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewDevolucionLabel_detalleFactura}"/>
+                        <h:outputText value="#{devolucionController.selected.detalleFactura}" title="#{bundle.ViewDevolucionTitle_detalleFactura}"/>
+                        <h:outputText value="#{bundle.ViewDevolucionLabel_detalleFactura1}"/>
+                        <h:outputText value="#{devolucionController.selected.detalleFactura1}" title="#{bundle.ViewDevolucionTitle_detalleFactura1}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DevolucionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
